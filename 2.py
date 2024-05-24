@@ -59,18 +59,28 @@ class IceCreamStand:
         self.flavors = ["Ванильное", "Шоколадное", "Клубничное"]
         self.selected_flavor = tk.StringVar(value=self.flavors[0])
 
+        self.types = ["Мягкое мороженое", "На палочке"]
+        self.selected_type = tk.StringVar(value=self.types[0])
+
         self.flavor_label = tk.Label(master, text="Выберите сорт мороженого:")
         self.flavor_label.pack()
 
         self.flavor_option = tk.OptionMenu(master, self.selected_flavor, *self.flavors)
         self.flavor_option.pack()
 
+        self.type_label = tk.Label(master, text="Выберите тип мороженого:")
+        self.type_label.pack()
+
+        self.type_option = tk.OptionMenu(master, self.selected_type, *self.types)
+        self.type_option.pack()
+
         self.order_button = tk.Button(master, text="Заказать", command=self.place_order)
         self.order_button.pack()
 
     def place_order(self):
         flavor = self.selected_flavor.get()
-        message = f"Вы заказали мороженое со вкусом '{flavor}'. Спасибо за заказ!"
+        ice_cream_type = self.selected_type.get()
+        message = f"Вы заказали {ice_cream_type.lower()} мороженое со вкусом '{flavor}'. Спасибо за заказ!"
         order_confirmation = tk.Label(self.master, text=message)
         order_confirmation.pack()
 
